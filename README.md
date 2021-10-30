@@ -52,7 +52,7 @@ Input_emb -> TransformerEncoder * 24 -> Pooling -> Fc -> Video_emb<br>
 ### 预训练
 预训练采用了 Tag classify, Mask language model, Mask frame model 三个任务<br> 
 
-(1) Tag classify 任务<br> 
+(1) Video tag classify 任务<br> 
 tag 为人工标注的视频标签，pointwise 和 pairwise 数据集合中提供。<br> 
 和官方提供的 baseline 一致，我们采用了出现频率前1w 的tag 做多标签分类任务。<br> 
 Bert 最后一层的 [CLS] -> fc 得到 tag 的预测标签，与真实标签计算 BCE loss<br> 
@@ -107,10 +107,10 @@ svd_vec = SVD(concat_vec, 256)<br>
 模型都使用了 bert-large 这种结构，均为迭代过程中产出的模型，各模型之间只有微小的 diff，各个模型加权权重均为 1/6。<br>
 下面表格中列出了各模型的diff部分，验证集mse，验证集spearman<br>
 
-| jobid | ensemble-weight | diff describe | val-spearman | val-mse |
+| jobid | ensemble-weight | detail | val-spearman | val-mse |
 | ---- | ---- | ---- | ---- | ---- |
 | job1 | 1/6 | base | 0.886031 | 0.028813 |
-| job2 | 1/6 | 输入无cls | 0.884257 | 0.029493 |
+| job2 | 1/6 | 预训练tag分类任务为mean_pooling+fc | 0.884257 | 0.029493 |
 | job3 | 1/6 | 预训练任务无 mfm | 0.883843 | 0.029248 |
 | job4 | 1/6 | 预训练数据为 (point + pair)shuf-40epoch => pair-5epoch | 0.885397 | 0.029059 |
 | job5 | 1/6 | 预训练数据为 (point-shuf => pair-shuf => test-shuf)-32epoch | 0.885795 | 0.028866 |
