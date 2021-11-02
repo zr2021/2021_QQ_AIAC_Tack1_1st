@@ -1,7 +1,7 @@
 # 2021_QQ_AIAC_Tack1_1st
 QQ浏览器2021AI算法大赛赛道一 第1名 方案
 
-paper : <br> 
+paper : [link](https://drive.google.com/file/d/1ErH8CtK9nwRjNAZP1DwsyPfPByJtUoNU/view?usp=sharing) <br> 
 
 ## 环境
 python==3.7.10 <br> 
@@ -12,9 +12,9 @@ pretrain 需要显存>=24GB 内存>=100GB <br>
 ## 数据下载
 (1) 视频数据集 <br> 
 视频数据集在官网下载 https://algo.browser.qq.com/ <br> 
-预期主办方会开源数据集，开源后会将地址补上 <br> 
 下载后放到 ./input/data 文件夹 <br> 
 tag_list 为标签的 top1w，官方 baseline 中提供，放到同一文件夹 <br> 
+备注：主办方开源数据后，将地址下载补上 <br> 
 
 (2) 预训练模型 <br> 
 预训练模型使用了 https://huggingface.co/hfl/chinese-roberta-wwm-ext-large <br> 
@@ -98,7 +98,7 @@ tag 梯度量级比较小，因此乘以了较大的权重。<br>
 
 ## Ensemble
 (1) 融合的方法<br> 
-采用了 weighted concat -> svd 降维 方法进行融合。实验中发现这种方法降维效果折损较小。<br>
+采用了 weighted concat -> svd 降维 方法进行融合，发现这种方法降维效果折损较小。<br>
 concat_vec = [np.sqrt(w1) * emb1, np.sqrt(w2) * emb2, np.sqrt(w3) * emb3 ...]<br>
 svd_vec = SVD(concat_vec, 256)<br>
 
