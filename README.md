@@ -18,11 +18,11 @@ tag_list 为标签的 top1w，官方 baseline 中提供，放到同一文件夹 
 
 (2) 预训练模型 <br> 
 预训练模型使用了 https://huggingface.co/hfl/chinese-roberta-wwm-ext-large <br> 
-请使用 python3 -u download_pretrain_model.py 下载 <br> 
+请使用 `python3 -u download_pretrain_model.py` 下载 <br> 
 
 ##  步骤代码
 (1) 预训练 + finetune <br> 
-脚本命令：sh train.sh <br> 
+脚本命令：`sh train.sh` <br> 
 时间算力：单模在 1 张 a100 上大约需要 pretrain(2 day)，finetune(2 hour) <br> 
 输出文件：每个单模的 checkpoint 保存在 jobN/model_finetune_1.pth <br> 
 备注：各个单模间没有前后依赖关系，每个任务需要一张单卡，有多卡可以并行训练各个单模 <br> 
@@ -89,7 +89,7 @@ tag 梯度量级比较小，因此乘以了较大的权重。<br>
 
 (3) Label normalize<br> 
 评估指标为 spearman，考查预测值和实际值 rank 之间的相关性，因此对人工标注 label 做了 rank 归一化。<br>
-即 target = scipy.stats.rankdata(target, 'average')<br>
+即 `target = scipy.stats.rankdata(target, 'average')`<br>
 
 (4) Finetune Setting<br> 
 数据集：训练集使用了 pairwise 中 (id1%5!=0) | (id2%5 !=0) 的部分约 6.5w，验证集使用了(id1%5==0) & (id2%5==0) 的部分约 2.5k<br>
@@ -99,8 +99,8 @@ tag 梯度量级比较小，因此乘以了较大的权重。<br>
 ## Ensemble
 (1) 融合的方法<br> 
 采用了 weighted concat -> svd 降维 方法进行融合，发现这种方法降维效果折损较小。<br>
-concat_vec = [np.sqrt(w1) * emb1, np.sqrt(w2) * emb2, np.sqrt(w3) * emb3 ...]<br>
-svd_vec = SVD(concat_vec, 256)<br>
+`concat_vec = [np.sqrt(w1) * emb1, np.sqrt(w2) * emb2, np.sqrt(w3) * emb3 ...]`<br>
+`svd_vec = SVD(concat_vec, 256)`<br>
 
 (2) 融合的模型<br> 
 最终的提交融合了六个模型。
