@@ -1,7 +1,7 @@
 # 2021_QQ_AIAC_Tack1_1st
 QQ浏览器2021AI算法大赛赛道一 第1名 方案
 
-paper : [link](https://drive.google.com/file/d/1ErH8CtK9nwRjNAZP1DwsyPfPByJtUoNU/view?usp=sharing) <br> 
+paper : [link](https://arxiv.org/abs/2111.01677) <br> 
 
 ## 环境
 python==3.7.10 <br> 
