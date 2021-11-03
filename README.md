@@ -50,6 +50,9 @@ frame_feature 通过 fc 降维为 1024 维，与 text 的 emb 拼接。<br>
 Input_emb -> TransformerEncoder * 24 -> Pooling -> Fc -> Video_emb<br> 
 
 ### 预训练
+
+![image](https://github.com/zr2021/2021_QQ_AIAC_Tack1_1st/tree/main/fig/pretrain.png)
+
 预训练采用了 Tag classify, Mask language model, Mask frame model 三个任务<br> 
 
 (1) Video tag classify 任务<br> 
@@ -81,6 +84,8 @@ tag 梯度量级比较小，因此乘以了较大的权重。<br>
 
 
 ### Finetune
+![image](https://github.com/zr2021/2021_QQ_AIAC_Tack1_1st/tree/main/fig/finetune.png)
+
 (1) 下游任务<br> 
 视频 pair  分别通过 model 得到 256维 embedding，两个 embedding 的 cos 相似度与人工标注标签计算 mse<br>
 
