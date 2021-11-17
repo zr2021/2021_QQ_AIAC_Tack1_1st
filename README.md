@@ -12,9 +12,9 @@ pretrain 需要显存>=24GB 内存>=100GB <br>
 ## 数据下载
 (1) 视频数据集 <br> 
 视频数据集在官网下载 https://algo.browser.qq.com/ <br> 
+也可以在这里下载：https://share.weiyun.com/S7YSt5sp 密码：78u5bw <br>
 下载后放到 ./input/data 文件夹 <br> 
 tag_list 为标签的 top1w，官方 baseline 中提供，放到同一文件夹 <br> 
-数据下载地址：https://share.weiyun.com/S7YSt5sp 密码：78u5bw <br>
 
 (2) 预训练模型 <br> 
 预训练模型使用了 https://huggingface.co/hfl/chinese-roberta-wwm-ext-large <br> 
