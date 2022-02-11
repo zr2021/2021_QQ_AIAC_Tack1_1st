@@ -31,7 +31,7 @@ tag_list 为标签的 top1w，官方 baseline 中提供，放到同一文件夹 
 download_pretrain_model.py : 下载预训练模型的脚本 <br> 
 ensemble.py : 融合的脚本 <br> 
 job1-job6 : 六个模型训练任务，其文件结构完全一致，各 job 之间主要差别在预训练设置上 <br> 
-注：job1在赛后额外补充了一些代码注释 <br> 
+注：job1在赛后额外补充了一些代码注释，job1/log/train.log 提供了训练时日志仅供参考 <br> 
 jobN/pretrain.py 预训练脚本 <br> 
 jobN/finetune.py finetune脚本 <br> 
 jobN/data 数据预处理部分，包含 dataset、mask token 等 <br> 
